@@ -5,6 +5,20 @@
     <link rel="stylesheet" href="{{ asset('/libs/select2/dist/css/select2-bootstrap-5-theme.min.css') }}">
 @endpush
 
+@push('custom-css')
+<style>
+    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice{
+        font-size: 0.7rem;
+    }
+    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove{
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice{
+        align-items: center;
+    }
+</style>
+@endpush
 
 @section('content')
     <div class="page-header d-print-none">
@@ -15,7 +29,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"
                                     class="text-muted">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('Sửa Thành bài viết') }}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('Thêm danh mục') }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -24,11 +38,10 @@
     </div>
     <div class="page-body">
         <div class="container-xl">
-            <x-form :action="route('admin.post.update')" type="put" :validate="true">
-                <x-input type="hidden" name="id" :value="$post->id" />
+            <x-form :action="route('admin.category.store')" type="post" :validate="true">
                 <div class="row justify-content-center">
-                    @include('admin.posts.forms.edit-left', ['post' => $post])
-                    @include('admin.posts.forms.edit-right', ['post' => $post])
+                    @include('admin.categories.forms.create-left')
+                    @include('admin.categories.forms.create-right')
                 </div>
             </x-form>
         </div>
@@ -44,3 +57,4 @@
     <script src="{{ asset('/libs/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('/libs/select2/dist/js/i18n/' . trans()->getLocale() . '.js') }}"></script>
 @endpush
+

@@ -49,14 +49,6 @@
                     <x-input name="title" :value="$post->title" :required="true" :placeholder="__('Tiêu đề')" />
                 </div>
             </div>
-            <!-- slug -->
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-3">
-                    <label class="control-label">{{ __('Slug') }}:</label>
-                    <x-input name="slug" :value="$post->slug" :required="true" readonly
-                        placeholder="{{ __('Slug') }}" />
-                </div>
-            </div>
             <!-- excerpt -->
             <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
@@ -65,12 +57,18 @@
                         placeholder="{{ __('Đoạn trích ngắn')}}"/>
                 </div>
             </div>
+            <!-- avatar -->
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-3">
+                    <label class="control-label">{{ __('Hình ảnh') }}:</label>
+                    <x-input.image-ckfinder name="feature_image" showImage="featureImage" :value="$post->image"/>
+                </div>
+            </div>
             <!-- content -->
             <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
                     <label class="control-label">{{ __('Nội dung post') }}:</label>
-                    <x-input name="content" :value="$post->content" :required="true"
-                        placeholder="{{ __('Nội dung')}}"/>
+                    <textarea name="content" class="ckeditor visually-hidden" >{{$post->content}}</textarea>
                 </div>
             </div>
             <!-- Status -->
@@ -81,18 +79,6 @@
                         <x-option value="" :title="__('Chọn status')" />
                         @foreach ($status as $key => $value)
                             <x-option :option="$post->status" :value="$key" :title="__($value)" />
-                        @endforeach
-                    </x-select>
-                </div>
-            </div>
-            <!-- Featured -->
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-3">
-                    <label class="control-label">{{ __('Featured') }}:</label>
-                    <x-select name="is_featured" :required="true">
-                        <x-option value="" :title="__('Nêu bật')" />
-                        @foreach ($featured as $key => $value)
-                            <x-option :option="$post->is_featured" :value="$key" :title="__($value)" />
                         @endforeach
                     </x-select>
                 </div>

@@ -29,8 +29,8 @@ $config['authentication'] = '\CKSource\CKFinderBridge\CKFinderMiddleware';
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'http://127.0.0.1:8000';
-$config['licenseKey']  = 'FJCJBA5ADJKWJE224WTUWCE82JHBY';
+$config['licenseName'] = 'http://localhost';
+$config['licenseKey']  = 'LVCVK1WXTKJ7AU1HVS4E4S4HPMCB4';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

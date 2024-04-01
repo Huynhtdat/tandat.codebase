@@ -66,6 +66,17 @@ Route::group(['middleware' => 'auth.admin:admin'], function(){
         });
     });
 
+    //post
+    Route::prefix('/manager-category')->as('category.')->group(function(){
+        Route::controller(App\Admin\Http\Controllers\Category\CategoryController::class)->group(function(){
+            Route::get('/them', 'create')->name('create');
+            Route::get('/', 'index')->name('index');
+            Route::get('/sua/{id}', 'edit')->name('edit');
+            Route::put('/sua', 'update')->name('update');
+            Route::post('/them', 'store')->name('store');
+            Route::delete('/xoa/{id}', 'delete')->name('delete');
+        });
+    });
 
     //ckfinder
     Route::prefix('/quan-ly-file')->as('ckfinder.')->group(function(){

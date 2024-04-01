@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Admin\DataTables\Post;
+namespace App\Admin\DataTables\Category;
 
 use App\Admin\DataTables\BaseDataTable;
-use App\Admin\Repositories\Post\PostRepositoryInterface;
+use App\Admin\Repositories\Category\CategoryRepositoryInterface;
 use App\Admin\Traits\GetConfig;
 
-class PostDataTable extends BaseDataTable
+class CategoryDataTable extends BaseDataTable
 {
 
     use GetConfig;
@@ -21,7 +21,7 @@ class PostDataTable extends BaseDataTable
     protected array $actions = ['reset', 'reload'];
 
     public function __construct(
-        PostRepositoryInterface $repository
+        CategoryRepositoryInterface $repository
     ){
         parent::__construct();
 
@@ -30,8 +30,8 @@ class PostDataTable extends BaseDataTable
 
     public function getView(){
         return [
-            'action' => 'admin.posts.datatable.action',
-            'editlink' => 'admin.posts.datatable.editlink',
+            'action' => 'admin.categories.datatable.action',
+            'editlink' => 'admin.categories.datatable.editlink',
         ];
     }
     /**
@@ -46,10 +46,9 @@ class PostDataTable extends BaseDataTable
         $this->filterColumnCreatedAt();
         $this->filterColumnStatus();
         $this->editColumnId();
+        $this->editColumnName();
         $this->editColumnSlug();
         $this->editColumnStatus();
-        $this->editColumnExcerpt();
-        $this->editColumnContent();
         $this->editColumnCreatedAt();
         $this->addColumnAction();
 
@@ -59,10 +58,10 @@ class PostDataTable extends BaseDataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Post $model
+     * @param \App\Models\Category $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(\App\Models\Post $model)
+    public function query(\App\Models\Category $model)
     {
         return $model->newQuery();
     }
@@ -75,7 +74,7 @@ class PostDataTable extends BaseDataTable
     public function html()
     {
         $this->instanceHtml = $this->builder()
-        ->setTableId('postTable')
+        ->setTableId('categoryTable')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->dom('Bfrtip')
@@ -93,12 +92,12 @@ class PostDataTable extends BaseDataTable
      * @return array
      */
     protected function setCustomColumns(){
-        $this->customColumns = $this->traitGetConfigDatatableColumns('post');
+        $this->customColumns = $this->traitGetConfigDatatableColumns('category');
     }
 
     protected function filename(): string
     {
-        return 'Post_' . date('YmdHis');
+        return 'Category_' . date('YmdHis');
     }
 
     protected function filterColumnStatus(){
@@ -118,29 +117,17 @@ class PostDataTable extends BaseDataTable
     protected function editColumnId(){
         $this->instanceDataTable = $this->instanceDataTable->editColumn('id', $this->view['editlink']);
     }
-    protected function editColumnTitle(){
-        $this->instanceDataTable = $this->instanceDataTable->editColumn('title', $this->view['editlink']);
+    protected function editColumnName(){
+        $this->instanceDataTable = $this->instanceDataTable->editColumn('name', $this->view['editlink']);
     }
     protected function editColumnSlug(){
-        $this->instanceDataTable = $this->instanceDataTable->editColumn('slug', function($post){
-            return $post->slug;
+        $this->instanceDataTable = $this->instanceDataTable->editColumn('slug', function($category){
+            return $category->slug;
         });
     }
     protected function editColumnStatus(){
-        $this->instanceDataTable = $this->instanceDataTable->editColumn('status', function($post){
-            return $post->status->description();
-        });
-    }
-
-    protected function editColumnExcerpt(){
-        $this->instanceDataTable = $this->instanceDataTable->editColumn('exceprt', function($post){
-            return $post->excerpt;
-        });
-    }
-
-    protected function editColumnContent(){
-        $this->instanceDataTable = $this->instanceDataTable->editColumn('content', function($post){
-            return $post->content;
+        $this->instanceDataTable = $this->instanceDataTable->editColumn('status', function($category){
+            return $category->status->description();
         });
     }
 
@@ -151,7 +138,7 @@ class PostDataTable extends BaseDataTable
         $this->instanceDataTable = $this->instanceDataTable->addColumn('action', $this->view['action']);
     }
     protected function rawColumnsNew(){
-        $this->instanceDataTable = $this->instanceDataTable->rawColumns(['title', 'action']);
+        $this->instanceDataTable = $this->instanceDataTable->rawColumns(['name', 'action']);
     }
     protected function htmlParameters(){
 
@@ -159,7 +146,7 @@ class PostDataTable extends BaseDataTable
 
         $this->parameters['initComplete'] = "function () {
 
-            moveSearchColumnsDatatable('#postTable');
+            moveSearchColumnsDatatable('#categoryTable');
 
             searchColumsDataTable(this);
         }";

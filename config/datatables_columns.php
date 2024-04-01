@@ -179,4 +179,40 @@ return [
             'addClass' => 'text-center'
         ],
     ],
+
+    'category' => [
+        'DT_RowIndex' => [
+            'title' => 'STT',
+            'width' => '20px',
+            'orderable' => false
+        ],
+        'name' => [
+            'title' => 'Tên Tiêu đề',
+            'orderable' => false
+        ],
+        'slug' => [
+            'title' => 'Slug',
+            'orderable' => false,
+            'visible' => false
+        ],
+        'status' => [
+            'title' => 'Trạng thái',
+            'orderable' => false
+        ],
+        'parent_id' => [
+            'title' => 'Parent ID',
+            'orderable' => false
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => false,
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center'
+        ],
+    ],
 ];
