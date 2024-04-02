@@ -60,7 +60,7 @@ interface CategoryRepositoryInterface
      */
     public function getQueryBuilder();
 
-    public function getFlatTreeNotInNode(array $nodeId);
+    // public function getFlatTreeNotInNode(array $nodeId);
 
-    public function getFlatTree();
+    // public function getFlatTree();
 }

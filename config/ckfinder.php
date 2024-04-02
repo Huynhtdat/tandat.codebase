@@ -30,7 +30,7 @@ $config['authentication'] = '\App\Admin\Http\Middleware\CustomCKFinderAuth';
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
 $config['licenseName'] = 'localhost/tandat.codebase';
-$config['licenseKey']  = 'Q1Y175EYJAJFXK3JRSHAMX13RREE7';
+$config['licenseKey']  = 'KQDQ8Y9Q2MUU23UUFG8YM7E43GPD2';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

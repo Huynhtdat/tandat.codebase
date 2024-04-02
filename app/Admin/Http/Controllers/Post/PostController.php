@@ -50,10 +50,10 @@ class PostController extends Controller
         ]);
     }
     public function create(){
-        $categories = $this->repoCate->getFlatTree();
+        // $categories = $this->repoCate->getFlatTree();
             return view($this->view['create'], [
                 'status' => PostStatus::asSelectArray(),
-                'categories' => $categories
+                // 'categories' => $categories
         ]);
     }
 
@@ -69,12 +69,12 @@ class PostController extends Controller
 
         $instance = $this->repository->findOrFail($id);
 
-        $categories = $this->repoCate->getFlatTree();
+        // $categories = $this->repoCate->getFlatTree();
         return view(
             $this->view['edit'],
             [
                 'post' => $instance,
-                'categories' => $categories,
+                // 'categories' => $categories,
                 'status' => PostStatus::asSelectArray()
             ],
         );

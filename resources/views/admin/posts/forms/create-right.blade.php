@@ -8,14 +8,12 @@
         </div>
     </div>
 
-    <div class="card mb-3">
+    <div class="card">
         <div class="card-header">
             @lang('category')
         </div>
-        <div class="card-body p-2 wrap-list-checkbox">
-            @foreach ($categories as $category)
-                <x-input-checkbox :depth="$category->depth" name="categories_id[]" :label="$category->name" :value="$category->id"/>
-            @endforeach
+        <div class="card-body">
+            <x-select name="categories_id[]" class="select2-bs5-ajax" :data-url="route('admin.search.select.category')" :multiple="true"></x-select>
         </div>
     </div>
 
