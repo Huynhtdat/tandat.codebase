@@ -59,4 +59,8 @@ interface CategoryRepositoryInterface
      * @return mixed
      */
     public function getQueryBuilder();
+
+    public function getFlatTreeNotInNode(array $nodeId);
+
+    public function getFlatTree();
 }

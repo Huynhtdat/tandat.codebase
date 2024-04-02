@@ -20,4 +20,22 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         $this->instance = $this->instance->orderBy($column, $sort);
         return $this->instance;
     }
+
+    public function getFlatTreeNotInNode(array $nodeId)
+    {
+        $this->getQueryBuilderOrderBy('id', 'ASC');
+        $this->instance = $this->instance->whereNotIn('id', $nodeId)
+            ->withDepth()
+            ->get()
+            ->toFlatTree();
+        return $this->instance;
+    }
+    public function getFlatTree()
+    {
+        $this->getQueryBuilderOrderBy('id', 'ASC');
+        $this->instance = $this->instance->withDepth()
+            ->get()
+            ->toFlatTree();
+        return $this->instance;
+    }
 }

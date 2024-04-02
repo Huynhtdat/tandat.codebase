@@ -30,13 +30,7 @@
                     <textarea name="content" class="ckeditor visually-hidden">{{ old('content') }}</textarea>
                 </div>
             </div>
-            <!-- avatar -->
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-3">
-                    <label class="control-label">{{ __('Hình ảnh') }}:</label>
-                    <x-input.image-ckfinder :value="old('image')" name="image" showImage="Image" />
-                </div>
-            </div>
+
             <!-- Status -->
             <div class="col-md-6 col-sm-12">
                 <div class="mb-3">

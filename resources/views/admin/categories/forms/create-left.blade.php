@@ -9,7 +9,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
                     <label class="control-label">{{ __('Tên Tiêu đề') }}:</label>
-                    <x-input name="name" :value="old('title')" :required="true"
+                    <x-input name="name" :value="old('name')" :required="true"
                         :placeholder="__('Tiêu đề')" />
                 </div>
             </div>

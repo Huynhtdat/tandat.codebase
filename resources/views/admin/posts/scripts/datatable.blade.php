@@ -18,4 +18,11 @@
             });
         });
     }
-    </script>
+</script>
+
+<script>
+    $(document).ready(function() {
+        select2LoadData($('#cateRoute').val(), '.select2-bs5-ajax[name="category_id[]"]');
+    });
+</script>
+

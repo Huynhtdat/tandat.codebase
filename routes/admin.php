@@ -96,6 +96,13 @@ Route::group(['middleware' => 'auth.admin:admin'], function(){
         Route::put('/', 'update')->name('update');
     });
 
+    Route::prefix('/search')->as('search.')->group(function () {
+        Route::prefix('/select')->as('select.')->group(function () {
+            Route::get('/category', [App\Admin\Http\Controllers\Category\CategorySearchSelectController::class, 'selectSearch'])->name('category');
+
+        });
+    });
+
     Route::controller(App\Admin\Http\Controllers\Auth\ChangePasswordController::class)
     ->prefix('/password')
     ->as('password.')

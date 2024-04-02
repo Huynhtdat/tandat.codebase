@@ -19,10 +19,10 @@
     <div class="page-body">
         <div class="container-xl">
             <x-form :action="route('admin.category.update')" type="put" :validate="true">
-                <x-input type="hidden" name="id" :value="$post->id" />
+                <x-input type="hidden" name="id" :value="$category->id" />
                 <div class="row justify-content-center">
-                    @include('admin.categories.forms.edit-left', ['post' => $post])
-                    @include('admin.categories.forms.edit-right', ['post' => $post])
+                    @include('admin.categories.forms.edit-left', ['category' => $category])
+                    @include('admin.categories.forms.edit-right', ['category' => $category])
                 </div>
             </x-form>
         </div>

@@ -20,7 +20,7 @@
                     <x-select name="status" :required="true">
                         <x-option value="" :title="__('Chọn status')" />
                         @foreach ($status as $key => $value)
-                            <x-option :option="$post->status" :value="$key" :title="__($value)" />
+                            <x-option :option="$category->status" :value="$key" :title="__($value)" />
                         @endforeach
                     </x-select>
                 </div>

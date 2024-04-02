@@ -7,19 +7,23 @@ use App\Admin\Http\Requests\Post\PostRequest;
 use App\Admin\Repositories\Post\PostRepositoryInterface;
 use App\Admin\Services\Post\PostServiceInterface;
 use App\Admin\DataTables\Post\PostDataTable;
+use App\Admin\Repositories\Category\CategoryRepositoryInterface;
 use App\Enums\Post\PostStatus;
 
 class PostController extends Controller
 {
+    protected $repoCate;
+
     public function __construct(
         PostRepositoryInterface $repository,
+        CategoryRepositoryInterface $repoCate,
         PostServiceInterface $service
     ){
 
         parent::__construct();
 
         $this->repository = $repository;
-
+        $this->repoCate = $repoCate;
         $this->service = $service;
 
     }
@@ -46,8 +50,10 @@ class PostController extends Controller
         ]);
     }
     public function create(){
+        $categories = $this->repoCate->getFlatTree();
             return view($this->view['create'], [
-                'status' => PostStatus::asSelectArray()
+                'status' => PostStatus::asSelectArray(),
+                'categories' => $categories
         ]);
     }
 
@@ -62,10 +68,13 @@ class PostController extends Controller
     public function edit($id){
 
         $instance = $this->repository->findOrFail($id);
+
+        $categories = $this->repoCate->getFlatTree();
         return view(
             $this->view['edit'],
             [
                 'post' => $instance,
+                'categories' => $categories,
                 'status' => PostStatus::asSelectArray()
             ],
         );

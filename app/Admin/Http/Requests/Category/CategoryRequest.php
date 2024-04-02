@@ -18,7 +18,7 @@ class CategoryRequest extends BaseRequest
     protected function methodPost()
     {
         return [
-            'title' => ['required', 'string'],
+            'name' => ['required', 'string'],
             'status' => ['required', new Enum(CategoryStatus::class)]
         ];
     }

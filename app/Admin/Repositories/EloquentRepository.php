@@ -29,7 +29,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
     {
         $this->setModel();
     }
-    
+
     /**
      * get model
      * @return string
